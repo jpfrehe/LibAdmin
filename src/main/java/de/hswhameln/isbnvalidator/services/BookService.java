@@ -38,7 +38,7 @@ public class BookService {
      * @param publisher Verlag als String
      * @param isbn      ISBN als String
      */
-    public void createBook(String titel, String author, String publisher, String isbn) {
-        repository.save(new Book(titel, author, publisher, isbn));
+    public void createBook(Book book) {
+        repository.save(book);
     }
 }
