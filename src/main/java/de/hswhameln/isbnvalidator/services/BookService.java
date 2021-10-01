@@ -1,5 +1,6 @@
 package de.hswhameln.isbnvalidator.services;
 
+import de.hswhameln.isbnvalidator.exceptions.BookAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,11 @@ public class BookService {
      * @param book Book as Entitdy
      */
     public void createBook(Book book) {
-        this.repository.save(book);
+        if(this.repository.findByisbn(book.getIsbn()).isPresent()) {
+            throw new BookAlreadyExistsException(book.getIsbn());
+        } else {
+            this.repository.save(book);
+        }
     }
 
     public void deleteBook(List<Book> books) {

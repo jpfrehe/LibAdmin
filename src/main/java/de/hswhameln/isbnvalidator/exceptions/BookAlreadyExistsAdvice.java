@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class BookNotFoundAdvice {
+public class BookAlreadyExistsAdvice {
 
     @ResponseBody
-    @ExceptionHandler(BookNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    String bookNotFoundHandler(BookNotFoundException ex) {
+    @ExceptionHandler(BookAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    String bookAlreadyExistsHandler(BookAlreadyExistsException ex) {
         return ex.getMessage();
     }
 }
