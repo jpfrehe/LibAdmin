@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import de.hswhameln.isbnvalidator.beans.Book;
 import de.hswhameln.isbnvalidator.repositories.BookRepository;
 
+import java.util.Optional;
+
 @Service
 public class BookService {
     // Durch Autowired im Konstruktor wird durch Spring automatisch injected
@@ -20,16 +22,16 @@ public class BookService {
      * Sucht uns das Buch aus der DB oder erstellt ein neues Objekt Mit Hilfe einer
      * automatisierten WHERE Bedingung im Repository
      * 
-     * @param isbn      ISBN als String
      * @param titel     Titel als String
      * @param author    Autor als String
      * @param publisher Verlag als String
+     * @param isbn      ISBN als String
      * @return Bookobjekt
      */
-    public Book findBook(String isbn, String titel, String author, String publisher) {
+    public Optional<Book> findBook(String isbn) {
         // BookValidation.checkBook(isbn);
 
-        return repository.findByisbn(isbn).orElseGet(() -> new Book(isbn, titel, author, publisher));
+        return repository.findByisbn(isbn);
     }
 
     /**

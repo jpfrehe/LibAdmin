@@ -1,47 +1,18 @@
-package de.hswhameln.isbnvalidator.beans;
+package de.hswhameln.isbnvalidator.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import de.hswhameln.isbnvalidator.beans.Book;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name="T_BOOK")
-public class Book {
-
-    @Id
-    @JsonIgnore
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @Column
+public class BookResponse {
     private String title;
-
-    @Column
     private String author;
-
-    @Column
     private String publisher;
-
-    @Column
     private String isbn;
 
-    public Book(String title, String author, String publisher, String isbn) {
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.isbn = isbn;
-    }
-
-    public Book() {
-
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public BookResponse(Book book) {
+        this.title = book.getTitle();
+        this.author = book.getAuthor();
+        this.publisher = book.getPublisher();
+        this.isbn = book.getIsbn();
     }
 
     public String getTitle() {
@@ -75,6 +46,4 @@ public class Book {
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
-
-    
 }
