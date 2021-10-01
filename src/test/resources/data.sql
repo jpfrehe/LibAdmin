@@ -1,0 +1,1 @@
+insert into T_BOOK(title, author, publisher, isbn) VALUES();
