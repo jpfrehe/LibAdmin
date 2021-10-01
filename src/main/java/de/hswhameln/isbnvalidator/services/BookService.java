@@ -2,12 +2,21 @@ package de.hswhameln.isbnvalidator.services;
 
 import de.hswhameln.isbnvalidator.exceptions.BookAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import de.hswhameln.isbnvalidator.beans.Book;
 import de.hswhameln.isbnvalidator.repositories.BookRepository;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -23,10 +32,7 @@ public class BookService {
     /**
      * Sucht uns das Buch aus der DB oder erstellt ein neues Objekt Mit Hilfe einer
      * automatisierten WHERE Bedingung im Repository
-     * 
-     * @param titel     Titel als String
-     * @param author    Autor als String
-     * @param publisher Verlag als String
+     *
      * @param isbn      ISBN als String
      * @return Bookobjekt
      */
@@ -49,5 +55,25 @@ public class BookService {
 
     public void deleteBook(List<Book> books) {
         this.repository.deleteAll(books);
+    }
+
+    private void validateISBN(String isbn) {
+        String url = "https://app.example.com/hr/email";
+
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("isbn", isbn);
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.postForEntity( url, params, String.class );
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+        map.add("email", "first.last@example.com");
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+
+        ResponseEntity<String> response1 = restTemplate.postForEntity( url, request , String.class );
     }
 }
