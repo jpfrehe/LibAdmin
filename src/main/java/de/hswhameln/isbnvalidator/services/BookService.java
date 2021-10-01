@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import de.hswhameln.isbnvalidator.beans.Book;
 import de.hswhameln.isbnvalidator.repositories.BookRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,12 +36,13 @@ public class BookService {
     }
 
     /**
-     * @param titel     Titel als String
-     * @param author    Autor als String
-     * @param publisher Verlag als String
-     * @param isbn      ISBN als String
+     * @param book Book as Entitdy
      */
     public void createBook(Book book) {
-        repository.save(book);
+        this.repository.save(book);
+    }
+
+    public void deleteBook(List<Book> books) {
+        this.repository.deleteAll(books);
     }
 }
