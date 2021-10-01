@@ -29,17 +29,16 @@ public class BookService {
     public Book findBook(String isbn, String titel, String author, String publisher) {
         // BookValidation.checkBook(isbn);
 
-        return repository.findByISBN(isbn).orElseGet(() -> new Book(isbn, titel, author, publisher));
+        return repository.findByisbn(isbn).orElseGet(() -> new Book(isbn, titel, author, publisher));
     }
 
     /**
-     * @param isbn      ISBN als String
      * @param titel     Titel als String
      * @param author    Autor als String
      * @param publisher Verlag als String
-     * @return Bookobjekt
+     * @param isbn      ISBN als String
      */
-    public void createBook(String isbn, String titel, String author, String publisher) {
-        repository.save(new Book(isbn, titel, author, publisher));
+    public void createBook(String titel, String author, String publisher, String isbn) {
+        repository.save(new Book(titel, author, publisher, isbn));
     }
 }

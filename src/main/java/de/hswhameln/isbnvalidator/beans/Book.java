@@ -11,7 +11,7 @@ public class Book {
     private long id;
 
     @Column
-    private String titel;
+    private String title;
 
     @Column
     private String author;
@@ -22,11 +22,15 @@ public class Book {
     @Column
     private String isbn;
 
-    public Book(String titel, String author, String publisher, String isbn) {
-        this.titel = titel;
+    public Book(String title, String author, String publisher, String isbn) {
+        this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.isbn = isbn;
+    }
+
+    public Book() {
+
     }
 
     public long getId() {
@@ -37,12 +41,12 @@ public class Book {
         this.id = id;
     }
 
-    public String getTitel() {
-        return titel;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitel(String titel) {
-        this.titel = titel;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getAuthor() {

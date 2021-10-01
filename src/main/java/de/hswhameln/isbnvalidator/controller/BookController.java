@@ -20,7 +20,7 @@ public class BookController {
 
     @PostMapping(path = "/addbook")
     public void createBook(@RequestBody AddRequest request) {
-        service.createBook(request.getBook().getIsbn(), request.getBook().getTitel(), request.getBook().getAuthor(), request.getBook().getPublisher());
+        service.createBook(request.getBook().getIsbn(), request.getBook().getTitle(), request.getBook().getAuthor(), request.getBook().getPublisher());
     }
 
 }
