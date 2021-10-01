@@ -1,1 +1,16 @@
-insert into T_BOOK(title, author, publisher, isbn) VALUES();
+insert into T_BOOK(title, author, publisher, isbn) VALUES('Der Donnerstagsmordclub','Richard Osman', 'List Verlag', '978-3-471-36014-9');
+insert into T_BOOK(title, author, publisher, isbn) VALUES('DAFUQ','Kira Jarmysch','Rowohlt Berlin','978-3-7371-0140-0');
+insert into T_BOOK(title, author, publisher, isbn) VALUES('RussenRap','Andrej Gelassimow','	Blumenbar','978-3-351-05092-4');
+insert into T_BOOK(title, author, publisher, isbn) VALUES('Mein Lieblingstier heißt Winter','Ferdinand Schmalz','S. Fischer Verlag','978-3-10-397400-3');
+insert into T_BOOK(title, author, publisher, isbn) VALUES('Aus den Fugen','Alain Claude Sulzer','Kiepenheuer & Witsch','978-3-462-04604-5');
+insert into T_BOOK(title, author, publisher, isbn) VALUES('Der Radfahrer von Tschernobyl','Javier Sebastián','Wagenbach, K','978-3-8031-2711-2');
+insert into T_BOOK(title, author, publisher, isbn) VALUES('Nina & Tom','Tom Kummer','Blumenbar','978-3-351-05035-1');
+insert into T_BOOK(title, author, publisher, isbn) VALUES('Star Wars: Blutlinie','Claudia Gray','Panini','978-3-8332-3354-8');
+insert into T_BOOK(title, author, publisher, isbn) VALUES('Leia, Prinzessin von Alderaan','Claudia Gray','Panini','978-3-8332-3569-6');
+insert into T_BOOK(title, author, publisher, isbn) VALUES('Mein Kopf, ein Universum','Carmen Kroll','Heinen Lovebrands','978-3-9821206-3-8');
+insert into T_BOOK(title, author, publisher, isbn) VALUES('Generation Z','Valentina Vapaux','Gräfe und Unzer Verlag GmbH','978-3-8338-7876-3');
+insert into T_BOOK(title, author, publisher, isbn) VALUES('Du musst nicht von allen gemocht werden','Ichiro Kishimi, Fumitake Koga','Rowohlt Taschenbuch','978-3-499-63405-5');
+insert into T_BOOK(title, author, publisher, isbn) VALUES('Verletzlichkeit macht stark','Brené Brown','Goldmann','978-3-442-22147-9');
+insert into T_BOOK(title, author, publisher, isbn) VALUES('Happy-End im Kopfkino','Katharina Middendorf, Ralf Sturm','Gräfe und Unzer Verlag GmbH','978-3-8338-6414-8');
+insert into T_BOOK(title, author, publisher, isbn) VALUES('Es existiert','Johannes Huber','	Goldmann','978-3-442-22232-2');
+insert into T_BOOK(title, author, publisher, isbn) VALUES('Mein BlaBlaBla','Marcel Karau','Panini','978-3-442-12345-2');
