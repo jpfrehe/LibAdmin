@@ -35,4 +35,14 @@ class IsbnvalidatorApplicationTests {
 		service.createBook(new Book("Star Wars: Das Licht der Jedi", "Charles Soule","Blanvalent","978-0-593-15771-8"));
 	}
 
+	@Test
+	void findBookTest() {
+		service.findBook("978-3-442-22232-2");
+	}
+
+	@Test
+	void createFalseBookTest() {
+		service.createBook(new Book("Star Wars: Das Licht der Jedi", "Charles Soule","Blanvalent","978-0-593-15771-9"));
+		System.out.println(service.findBook("978-0-593-15771-9").get().getTitle());
+	}
 }
