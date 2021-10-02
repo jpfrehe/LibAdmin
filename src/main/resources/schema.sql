@@ -1,3 +1,5 @@
+CREATE SCHEMA BOOK;
+
 drop table T_BOOK if exists;
 
 create table T_BOOK (
