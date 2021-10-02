@@ -53,11 +53,11 @@ public class BookService {
         }
     }
 
-    public void deleteBook(List<Book> books) {
+    public void deleteBooks(List<Book> books) {
         this.repository.deleteAll(books);
     }
 
-    private void validateISBN(String isbn) {
+    private boolean validateISBN(String isbn) {
         String url = "https://app.example.com/hr/email";
 
         Map<String, String> params = new HashMap<String, String>();
@@ -66,6 +66,7 @@ public class BookService {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.postForEntity( url, params, String.class );
 
+        //BodyCall
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -75,5 +76,6 @@ public class BookService {
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 
         ResponseEntity<String> response1 = restTemplate.postForEntity( url, request , String.class );
+        return false;
     }
 }

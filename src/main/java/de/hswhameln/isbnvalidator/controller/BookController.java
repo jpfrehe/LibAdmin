@@ -38,13 +38,13 @@ public class BookController {
 
     @DeleteMapping(path = "/deleteBook")
     public void deleteBook(@RequestParam String isbn) {
-        this.service.deleteBook(List.of(this.service.findBook(isbn)
+        this.service.deleteBooks(List.of(this.service.findBook(isbn)
                         .orElseThrow(() -> new BookNotFoundException(isbn))));
     }
 
     @DeleteMapping(path = "/deleteBooks")
     public void deleteBooks(@RequestBody DeleteRequest request) {
-        this.service.deleteBook(request.getIsbns().stream()
+        this.service.deleteBooks(request.getIsbns().stream()
                 .map(i -> this.service.findBook(i).orElseThrow(() -> new BookNotFoundException(i)))
                 .collect(Collectors.toList()));
     }
