@@ -1,27 +1,30 @@
 package de.hswhameln.isbnvalidator;
 
 import de.hswhameln.isbnvalidator.beans.Book;
+import de.hswhameln.isbnvalidator.exceptions.BookAlreadyExistsException;
 import de.hswhameln.isbnvalidator.exceptions.BookNotFoundException;
+import de.hswhameln.isbnvalidator.repositories.BookRepository;
 import de.hswhameln.isbnvalidator.services.BookService;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
+import java.util.stream.StreamSupport;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class IsbnvalidatorApplicationTests {
 
 	private BookService service;
+	private BookRepository repository;
 
 	@Autowired
-	public IsbnvalidatorApplicationTests(BookService service) {
+	public IsbnvalidatorApplicationTests(BookService service, BookRepository repository) {
+		this.repository = repository;
 		this.service = service;
 	}
 
@@ -30,14 +33,19 @@ class IsbnvalidatorApplicationTests {
 	}
 
 	@Test
+	void testDataCreated() {
+		assertEquals(16,StreamSupport.stream(this.repository.findAll().spliterator(), false).count());
+	}
+
+	@Test
 	void deleteBookTest() {
 		service.deleteBooks(List.of(new Book("Nina & Tom","Tom Kummer","Blumenbar","978-3-351-05035-1")));
 	}
 
-	@Disabled @Test
+	@Test
 	void deleteBookAndSearchTest() {
 		service.deleteBooks(List.of(new Book("Es existiert","Johannes Huber","Goldmann","978-3-442-22232-2")));
-		assertThrows(BookNotFoundException.class, () -> service.findBook("978-3-442-22232-2").get());
+		assertEquals(Optional.empty(), service.findBook("978-3-442-22232-2"));
 	}
 
 	@Test
@@ -48,7 +56,7 @@ class IsbnvalidatorApplicationTests {
 
 	@Test
 	void findBookTest() {
-		service.findBook("978-3-442-22232-2");
+		assertTrue(service.findBook("978-3-442-22232-2").isPresent());
 	}
 
 	@Disabled @Test
@@ -59,14 +67,19 @@ class IsbnvalidatorApplicationTests {
 
 	@Test
 	void createAndDeleteTest() {
-		Book b = new Book("SuperSache","Markus Büning", "Panini", "978-3-442-12345-2");
+		Book b = new Book("SuperSache", "Markus Büning", "Panini", "978-3-442-12345-2");
 		service.createBook(b);
 		service.deleteBooks(List.of(b));
 	}
 
-	@Disabled @Test
+	@Test
 	void findAndDeleteTest() {
-		// Book b = new Book(service.findBook("978-3-7371-0140-0"));
-		// service.deleteBooks(List.of(b));
+		Optional<Book> b = service.findBook("978-3-499-63405-5");
+		service.deleteBooks(List.of(b.get()));
+	}
+
+	@Disabled @Test
+	void createExistingBook() {
+		//assertThrows(BookAlreadyExistsException.class, service.createBook(service.findBook("978-3-499-63405-5").get()));
 	}
 }
