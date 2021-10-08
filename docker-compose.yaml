@@ -1,14 +1,6 @@
 version: '3.8'
 
 services:
-  libadmin:
-    build: .
-    ports: 
-    - "8080:8080"
-    links: 
-    - "postgres:postgres"
-    depends_on: 
-    - postgres
   postgres:
     container_name: libadmin_database
     image: postgres
@@ -17,9 +9,18 @@ services:
       POSTGRES_PASSWORD: password
     volumes:
       - postgres:/data/postgres
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
-    restart: unless-stopped
+    restart: always
+  libadmin_service:
+    build: .
+    ports: 
+    - "8080:8080"
+    links: 
+    - "postgres:postgres"
+    depends_on: 
+    - postgres
   
 volumes:
   postgres:
