@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.*;
 import java.util.stream.StreamSupport;
@@ -33,39 +34,46 @@ class IsbnvalidatorApplicationTests {
 	}
 
 	@Test
+	@DirtiesContext
 	void testDataCreated() {
 		assertEquals(16,StreamSupport.stream(this.repository.findAll().spliterator(), false).count());
 	}
 
 	@Test
+	@DirtiesContext
 	void deleteBookTest() {
 		service.deleteBooks(List.of(new Book("Nina & Tom","Tom Kummer","Blumenbar","978-3-351-05035-1")));
 	}
 
 	@Test
+	@DirtiesContext
 	void deleteBookAndSearchTest() {
 		service.deleteBooks(List.of(new Book("Es existiert","Johannes Huber","Goldmann","978-3-442-22232-2")));
 		assertEquals(Optional.empty(), service.findBook("978-3-442-22232-2"));
 	}
 
 	@Test
+	@DirtiesContext
 	void createBookTest() {
 		service.createBook(new Book("Star Wars: Das Licht der Jedi", "Charles Soule","Blanvalent","978-0-593-15771-8"));
 		System.out.println(service.findBook("978-0-593-15771-8").get().getTitle());
 	}
 
 	@Test
+	@DirtiesContext
 	void findBookTest() {
 		assertTrue(service.findBook("978-3-442-22232-2").isPresent());
 	}
 
 	@Disabled @Test
+	@DirtiesContext
 	void createFalseBookTest() {
 		service.createBook(new Book("Star Wars: Das Licht der Jedi", "Charles Soule","Blanvalent","978-0-593-15771-9"));
 		System.out.println(service.findBook("978-0-593-15771-9").get().getTitle());
 	}
 
 	@Test
+	@DirtiesContext
 	void createAndDeleteTest() {
 		Book b = new Book("SuperSache", "Markus Büning", "Panini", "978-3-442-12345-2");
 		service.createBook(b);
@@ -73,12 +81,14 @@ class IsbnvalidatorApplicationTests {
 	}
 
 	@Test
+	@DirtiesContext
 	void findAndDeleteTest() {
 		Optional<Book> b = service.findBook("978-3-499-63405-5");
 		service.deleteBooks(List.of(b.get()));
 	}
 
 	@Disabled @Test
+	@DirtiesContext
 	void createExistingBook() {
 		//assertThrows(BookAlreadyExistsException.class, service.createBook(service.findBook("978-3-499-63405-5").get()));
 	}
