@@ -23,7 +23,7 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package
     # Docker build
     - uses: actions/checkout@v2
 
@@ -38,12 +38,9 @@ jobs:
         password: ${{ secrets.AzureAppService_ContainerPassword_1d303e3bbc7b4c3595e033738cfb3386 }}
 
     - name: Build and push container image to registry
-      uses: docker/build-push-action@v2
-      with:
-        push: true
-        context: .
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_4f13827fd27c498199e395f363e346bc }}/libadmin:${{ github.sha }}
-        file: ./Dockerfile
+    - run: |
+        docker-compose up --build index.docker.io/${{ secrets.AzureAppService_ContainerUsername_4f13827fd27c498199e395f363e346bc }}/libadmin:${{ github.sha }}
+        docker push index.docker.io/${{ secrets.AzureAppService_ContainerUsername_4f13827fd27c498199e395f363e346bc }}/libadmin:${{ github.sha }}  
 
   deploy:
     runs-on: ubuntu-latest
