@@ -58,7 +58,7 @@ public class BookService {
     }
 
     private boolean validateISBN(String isbn) {
-        String url = "https://app.example.com/hr/email";
+        String url = "localhost:3000/validateISBN";
 
         Map<String, String> params = new HashMap<String, String>();
         params.put("isbn", isbn);
