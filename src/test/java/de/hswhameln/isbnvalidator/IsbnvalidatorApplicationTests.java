@@ -46,6 +46,7 @@ class IsbnvalidatorApplicationTests {
 	}
 
 	@Test
+	@Disabled
 	@DirtiesContext
 	void deleteBookAndSearchTest() {
 		service.deleteBooks(List.of(new Book("Es existiert","Johannes Huber","Goldmann","978-3-442-22232-2")));
@@ -73,6 +74,7 @@ class IsbnvalidatorApplicationTests {
 	}
 
 	@Test
+	@Disabled
 	@DirtiesContext
 	void createAndDeleteTest() {
 		Book b = new Book("SuperSache", "Markus Büning", "Panini", "978-3-442-12345-2");
