@@ -14,7 +14,9 @@ services:
       - "5432:5432"
     restart: always
   libadmin_service:
-    build: .
+    build:
+      context: ../
+      dockerfile: /docker/DockerFile
     ports: 
     - "8080:8080"
     links: 
