@@ -41,9 +41,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        cache-from: |
-          user/app:cache
-          type=local,src=path/to/dir
+        context: .
         tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_4f13827fd27c498199e395f363e346bc }}/libadmin:${{ github.sha }}
         file: ./Dockerfile
 
