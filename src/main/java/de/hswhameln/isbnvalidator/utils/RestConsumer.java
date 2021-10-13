@@ -20,12 +20,14 @@ public class RestConsumer {
     public JSONObject postRequest(String urlPath, Map<String, String> params) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.postForEntity(url + urlPath, params, String.class);
-        if(response.getStatusCode().equals(HttpStatus.OK)) {
+        if (response.getStatusCode().equals(HttpStatus.OK)) {
             try {
                 return new JSONObject(response.getBody());
-            } catch(JSONException e) {
+            } catch (JSONException e) {
                 throw new ISBNValidatorNotAccessibleException();
             }
+        } else if (response.getStatusCode().equals(HttpStatus.CONFLICT)) {
+            throw new IllegalArgumentException();
         } else {
             throw new ISBNValidatorNotAccessibleException();
         }
@@ -36,12 +38,14 @@ public class RestConsumer {
         params.put("isbn", isbn);
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.getForEntity(url + urlPath, String.class, params);
-        if(response.getStatusCode().equals(HttpStatus.OK)) {
+        if (response.getStatusCode().equals(HttpStatus.OK)) {
             try {
                 return new JSONObject(response.getBody());
-            } catch(JSONException e) {
+            } catch (JSONException e) {
                 throw new ISBNValidatorNotAccessibleException();
             }
+        } else if (response.getStatusCode().equals(HttpStatus.CONFLICT)) {
+            throw new IllegalArgumentException();
         } else {
             throw new ISBNValidatorNotAccessibleException();
         }
