@@ -1,6 +1,8 @@
 package de.hswhameln.isbnvalidator.services;
 
 import de.hswhameln.isbnvalidator.exceptions.BookAlreadyExistsException;
+import de.hswhameln.isbnvalidator.exceptions.BookNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -54,7 +56,17 @@ public class BookService {
     }
 
     public void deleteBooks(List<Book> books) {
-        this.repository.deleteAll(books);
+        for(Book book: books){
+            this.deleteBook(book);
+        }
+    }
+
+    public void deleteBook(Book book){
+        if(!this.repository.findByisbn(book.getIsbn()).isEmpty()){
+            this.repository.delete(book);
+        } else{
+            throw new BookNotFoundException(book.getIsbn());
+        }
     }
 
     private boolean validateISBN(String isbn) {
