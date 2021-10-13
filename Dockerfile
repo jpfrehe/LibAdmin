@@ -6,7 +6,7 @@ RUN mvn -DskipTests=true package
 
 FROM openjdk:11-jdk
 ARG JAVA_OPTS
-COPY target/isbnvalidator-0.0.1-SNAPSHOT.jar isbnvalidator-0.0.1-SNAPSHOT.jar
+COPY --from=MAVEN_BUILD ./build/target/*.jar /app/libadmin.jar
 ENV JAVA_OPTS=$JAVA_OPTS
 EXPOSE 8080
-ENTRYPOINT exec java $JAVA_OPTS -jar isbnvalidator-0.0.1-SNAPSHOT.jar
+ENTRYPOINT exec java $JAVA_OPTS -jar libadmin.jar
