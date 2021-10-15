@@ -1,5 +1,5 @@
 FROM maven:3.8.2-openjdk-11 AS MAVEN_BUILD
-COPY pom.xml /build/
+COPY ../springBootService/pom.xml /build/
 COPY ../springBootService/src /build/src/
 WORKDIR /build/
 RUN mvn -DskipTests=true package
