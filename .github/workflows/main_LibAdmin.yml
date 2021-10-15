@@ -25,5 +25,5 @@ jobs:
           docker build ./springBootService -t sacregistry.azurecr.io/libadmin:${{ github.sha }}
           docker push sacregistry.azurecr.io/libadmin:${{ github.sha }}
       - run : |
-          docker build ./database -t sacregistry.azurecr.io/MyPostgres:${{ github.sha }}
-          docker push sacregistry.azurecr.io/MyPostgres:${{ github.sha }}
+          docker build ./database -t sacregistry.azurecr.io/mypostgres:${{ github.sha }}
+          docker push sacregistry.azurecr.io/yypostgres:${{ github.sha }}

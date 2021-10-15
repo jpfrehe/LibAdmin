@@ -3,7 +3,7 @@ version: '3.8'
 services:
   postgres:
     container_name: libadmin_database
-    image: MyPostgres
+    image: mypostgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
