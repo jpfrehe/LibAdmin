@@ -9,4 +9,4 @@ ARG JAVA_OPTS
 COPY --from=MAVEN_BUILD ./build/target/*.jar /app/libadmin.jar
 ENV JAVA_OPTS=$JAVA_OPTS
 EXPOSE 8080
-ENTRYPOINT exec java $JAVA_OPTS -jar libadmin.jar
+ENTRYPOINT exec java $JAVA_OPTS -jar /app/libadmin.jar
