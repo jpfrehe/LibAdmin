@@ -33,4 +33,4 @@ jobs:
 
       - run : |
           docker build ./database -t sacregistry.azurecr.io/mypostgres:${{ github.sha }}
-          docker push sacregistry.azurecr.io/yypostgres:${{ github.sha }}
+          docker push sacregistry.azurecr.io/mypostgres:${{ github.sha }}
