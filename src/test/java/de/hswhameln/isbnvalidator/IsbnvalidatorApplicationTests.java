@@ -62,8 +62,7 @@ class IsbnvalidatorApplicationTests {
 
 	@Test
 	@DirtiesContext
-	void findBookTest() {
-		assertTrue(service.findBook("978-3-442-22232-2").isPresent());
+	void findBookTest() { assertTrue(service.findBook("978-3-442-22232-2").isPresent());
 	}
 
 	@Disabled @Test
@@ -89,19 +88,18 @@ class IsbnvalidatorApplicationTests {
 		service.deleteBook(b.get());
 	}
 
-	@Disabled @Test
+	@Test
 	@DirtiesContext
 	void createExistingBook() {
-		Assertions.assertThrows(BookAlreadyExistsException.class, () -> {
+		assertThrows(BookAlreadyExistsException.class, () -> {
 			service.createBook(service.findBook("978-3-499-63405-5").get());
 		});
 	}
 
 	@Test
-	@Disabled
 	@DirtiesContext
 	void deleteNonExistingBook() {
-		Assertions.assertThrows(BookNotFoundException.class, () -> {
+		assertThrows(BookNotFoundException.class, () -> {
 			service.deleteBook(new Book("Bürgerliches Gesetzbuch", "BGH", "dtv Verlagsgesellschaft", "978-3-423-05001-2"));
 		});
 	}
