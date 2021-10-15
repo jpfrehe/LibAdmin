@@ -8,5 +8,10 @@ FROM openjdk:11-jdk
 ARG JAVA_OPTS
 COPY --from=MAVEN_BUILD ./build/target/*.jar /app/libadmin.jar
 ENV JAVA_OPTS=$JAVA_OPTS
+<<<<<<< Updated upstream
 EXPOSE 8080
 ENTRYPOINT exec java $JAVA_OPTS -jar /app/libadmin.jar
+=======
+EXPOSE 80
+ENTRYPOINT exec java $JAVA_OPTS -jar libadmin.jar
+>>>>>>> Stashed changes

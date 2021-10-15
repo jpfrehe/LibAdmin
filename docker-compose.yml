@@ -14,11 +14,10 @@ services:
       - "5432:5432"
     restart: always
   libadmin_service:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    container_name: libadmin_service
+    image: libadmin
     ports: 
-    - "8080:8080"
+    - "80:80"
     links: 
     - "postgres:postgres"
     depends_on: 
