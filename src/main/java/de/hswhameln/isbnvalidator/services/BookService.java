@@ -62,8 +62,8 @@ public class BookService {
     }
 
     public void deleteBook(Book book){
-        if(!this.repository.findByisbn(book.getIsbn()).isEmpty()){
-            this.repository.delete(book);
+        if(this.repository.findByisbn(book.getIsbn()).isPresent()){
+            this.repository.delete(this.repository.findByisbn(book.getIsbn()).get());
         } else{
             throw new BookNotFoundException(book.getIsbn());
         }
