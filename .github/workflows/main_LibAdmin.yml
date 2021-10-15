@@ -24,6 +24,12 @@ jobs:
       - run: |
           docker build ./springBootService -t sacregistry.azurecr.io/libadmin:${{ github.sha }}
           docker push sacregistry.azurecr.io/libadmin:${{ github.sha }}
+
+      - uses: azure/docker-login@v1
+        with:
+          login-server: sacregistry.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}    
       - run : |
           docker build ./database -t sacregistry.azurecr.io/mypostgres:${{ github.sha }}
           docker push sacregistry.azurecr.io/yypostgres:${{ github.sha }}
