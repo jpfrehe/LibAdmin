@@ -7,10 +7,9 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
+      WEBSITES_ENABLE_APP_SERVICE_STORAGE: TRUE
     volumes:
       - volume1:/data/postgres
-    environment:
-     WEBSITES_ENABLE_APP_SERVICE_STORAGE: TRUE
     ports:
       - "5432:5432"
     restart: always
