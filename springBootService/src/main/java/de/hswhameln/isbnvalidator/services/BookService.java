@@ -2,6 +2,7 @@ package de.hswhameln.isbnvalidator.services;
 
 import de.hswhameln.isbnvalidator.exceptions.BookAlreadyExistsException;
 import de.hswhameln.isbnvalidator.exceptions.BookNotFoundException;
+import de.hswhameln.isbnvalidator.exceptions.ISBNNotValidException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import de.hswhameln.isbnvalidator.beans.Book;
 import de.hswhameln.isbnvalidator.repositories.BookRepository;
+import de.hswhameln.isbnvalidator.utils.ISBNAPI;
+
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -39,24 +42,28 @@ public class BookService {
      * @return Bookobjekt
      */
     public Optional<Book> findBook(String isbn) {
-        // BookValidation.checkBook(isbn);
-
+        if(!ISBNAPI.validateISBN(isbn)) {
+            throw new ISBNNotValidException(isbn);
+        }
         return repository.findByisbn(isbn);
     }
 
     /**
      * Fügt ein neues Buch in der DB hinzu.
-     * Dabei wird geprüft ob diese Buch bereits in der DB existiert.
+     * Dabei wird geprüft ob diese Buch bereits in der DB existiert
+     * und ob die ISBN des Buches korrekt ist.
      * In diesem Fall wird ein Fehler ausgegeben.
      *
      * @param book Book as Entitdy
      */
     public void createBook(Book book) {
+        if(!ISBNAPI.validateISBN(book.getIsbn())) {
+            throw new ISBNNotValidException(book.getIsbn());
+        }
         if(this.repository.findByisbn(book.getIsbn()).isPresent()) {
             throw new BookAlreadyExistsException(book.getIsbn());
-        } else {
-            this.repository.save(book);
         }
+        this.repository.save(book);
     }
 
     /**
@@ -84,33 +91,5 @@ public class BookService {
         } else{
             throw new BookNotFoundException(book.getIsbn());
         }
-    }
-
-    /**
-     * Prüft die ISBN eines Buches auf Korrektheit.
-     *
-     * @param isbn
-     * @return
-     */
-    private boolean validateISBN(String isbn) {
-        String url = "localhost:3000/validateISBN";
-
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("isbn", isbn);
-
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.postForEntity( url, params, String.class );
-
-        //BodyCall
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
-        map.add("email", "first.last@example.com");
-
-        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
-
-        ResponseEntity<String> response1 = restTemplate.postForEntity( url, request , String.class );
-        return false;
     }
 }

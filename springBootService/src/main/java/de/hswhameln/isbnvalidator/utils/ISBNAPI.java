@@ -6,13 +6,9 @@ import org.json.JSONObject;
 
 public class ISBNAPI {
 
-    private static RestConsumer isbnValidator;
-
     public static boolean validateISBN(String isbn) {
-        if(isbnValidator == null) {
-            isbnValidator = new RestConsumer("http://localhost:3000");
-        }
-        JSONObject response = isbnValidator.getRequest("/validateISBN", isbn);
+        RestConsumer isbnValidator = RestConsumer.getInstance();
+        JSONObject response = isbnValidator.getRequest("/ValidateISBN", isbn);
         try {
             return response.getBoolean("valid");
         } catch (JSONException e) {
@@ -21,9 +17,7 @@ public class ISBNAPI {
     }
 
     public static int getCheckDigit(String isbn) {
-        if(isbnValidator == null) {
-            isbnValidator = new RestConsumer("http://localhost:3000");
-        }
+        RestConsumer isbnValidator = RestConsumer.getInstance();
         JSONObject response = isbnValidator.getRequest("/checkDigit", isbn);
         try {
             return response.getInt("checkDigit");

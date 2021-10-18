@@ -11,9 +11,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RestConsumer {
+    private static RestConsumer instance;
+
+    public static RestConsumer getInstance() {
+        if(instance == null) {
+            instance = new RestConsumer("https://validateisbn.azurewebsites.net/api/");
+        }
+        return instance;
+    }
+    
     private String url;
 
-    public RestConsumer(String url) {
+    private RestConsumer(String url) {
         this.url = url;
     }
 
