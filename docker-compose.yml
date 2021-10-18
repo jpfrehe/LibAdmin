@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     volumes:
-      - /mypostgres:/data/postgres
+      - myportainer:/data/postgres
     ports:
       - "5432:5432"
     restart: always
@@ -21,6 +21,3 @@ services:
     - "postgres:postgres"
     depends_on: 
     - postgres
-  
-volumes:
-  postgres:
