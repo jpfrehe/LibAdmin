@@ -36,6 +36,7 @@ public class Book {
 
     }
 
+    // Getter und Setter zum Initialisiern und Auslesen von den Datenfeldern eines Buches.
     public int getId() {
         return id;
     }

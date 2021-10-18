@@ -45,6 +45,10 @@ public class BookService {
     }
 
     /**
+     * Fügt ein neues Buch in der DB hinzu.
+     * Dabei wird geprüft ob diese Buch bereits in der DB existiert.
+     * In diesem Fall wird ein Fehler ausgegeben.
+     *
      * @param book Book as Entitdy
      */
     public void createBook(Book book) {
@@ -55,12 +59,25 @@ public class BookService {
         }
     }
 
+    /**
+     * Löscht eine größere Anzahl an Büchern, welche in Form einer Liste übergeben werden.
+     * Dafür ruft die Methode den Löschvorgang für ein einzelnes Buch per Schleife auf.
+     *
+     * @param books
+     */
     public void deleteBooks(List<Book> books) {
         for(Book book: books){
             this.deleteBook(book);
         }
     }
 
+    /**
+     * Löscht ein übergebenes Buch aus der DB.
+     * Dabei wird geprüft, ob das Buch in der DB exisitiert.
+     * Falls nict wird ein Fheler ausgegeben.
+     *
+     * @param book
+     */
     public void deleteBook(Book book){
         if(this.repository.findByisbn(book.getIsbn()).isPresent()){
             this.repository.delete(this.repository.findByisbn(book.getIsbn()).get());
@@ -69,6 +86,12 @@ public class BookService {
         }
     }
 
+    /**
+     * Prüft die ISBN eines Buches auf Korrektheit.
+     *
+     * @param isbn
+     * @return
+     */
     private boolean validateISBN(String isbn) {
         String url = "localhost:3000/validateISBN";
 
