@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     volumes:
-      - myportainer:/data/postgres
+      - ${WEBAPP_STORAGE_HOME}/myportainer:/data/postgres
     ports:
       - "5432:5432"
     restart: always
