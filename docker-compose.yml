@@ -8,8 +8,9 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     volumes:
-      - postgres:/data/postgres
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - volume1:/data/postgres
+    environment:
+     WEBSITES_ENABLE_APP_SERVICE_STORAGE: TRUE
     ports:
       - "5432:5432"
     restart: always
