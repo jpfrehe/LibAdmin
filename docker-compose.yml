@@ -3,21 +3,24 @@ version: '3.8'
 services:
   postgres:
     container_name: libadmin_database
-    image: mypostgres
+    build: ./database/
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/myportainer:/data/postgres
+      - postgres:/data/postgres
     ports:
       - "5432:5432"
     restart: always
   libadmin_service:
     container_name: libadmin_service
-    image: libadmin
+    build: ./springBootService/
     ports: 
     - "80:80"
     links: 
     - "postgres:postgres"
     depends_on: 
     - postgres
+  
+volumes:
+  postgres:
