@@ -1,7 +1,7 @@
 package de.hswhameln.isbnvalidator;
 
 import de.hswhameln.isbnvalidator.beans.ISBNValidationResult;
-import de.hswhameln.isbnvalidator.dto.ValidationRequest;
+import de.hswhameln.isbnvalidator.dto.ValidationResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

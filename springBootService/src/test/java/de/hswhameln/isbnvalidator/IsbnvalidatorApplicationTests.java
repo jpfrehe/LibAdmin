@@ -3,6 +3,7 @@ package de.hswhameln.isbnvalidator;
 import de.hswhameln.isbnvalidator.beans.Book;
 import de.hswhameln.isbnvalidator.exceptions.BookAlreadyExistsException;
 import de.hswhameln.isbnvalidator.exceptions.BookNotFoundException;
+import de.hswhameln.isbnvalidator.exceptions.ISBNNotValidException;
 import de.hswhameln.isbnvalidator.repositories.BookRepository;
 import de.hswhameln.isbnvalidator.services.BookService;
 import org.junit.jupiter.api.Assertions;
@@ -65,18 +66,17 @@ class IsbnvalidatorApplicationTests {
 	void findBookTest() { assertTrue(service.findBook("978-3-442-22232-2").isPresent());
 	}
 
-	@Disabled @Test
+	@Test
 	@DirtiesContext
 	void createFalseBookTest() {
 		// Auf Jano warten
-		service.createBook(new Book("Star Wars: Das Licht der Jedi", "Charles Soule","Blanvalent","978-0-593-15771-9"));
-		System.out.println(service.findBook("978-0-593-15771-9").get().getTitle());
+		assertThrows(ISBNNotValidException.class, () -> service.createBook(new Book("Star Wars: Das Licht der Jedi", "Charles Soule","Blanvalent","978-0-593-15771-9")));
 	}
 
 	@Test
 	@DirtiesContext
 	void createAndDeleteTest() {
-		Book b = new Book("SuperSache", "Markus Büning", "Panini", "978-3-779-50599-0");
+		Book b = new Book("SuperSache", "Markus Büning", "Panini", "978-3-16-148410-0");
 		service.createBook(b);
 		service.deleteBook(b);
 	}
