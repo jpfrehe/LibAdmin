@@ -1,6 +1,5 @@
 package de.hswhameln.isbnvalidator.controller;
 
-import de.hswhameln.isbnvalidator.beans.Book;
 import de.hswhameln.isbnvalidator.dto.BookResponse;
 import de.hswhameln.isbnvalidator.dto.DeleteRequest;
 import de.hswhameln.isbnvalidator.exceptions.BookNotFoundException;
@@ -11,8 +10,6 @@ import de.hswhameln.isbnvalidator.dto.AddRequest;
 import de.hswhameln.isbnvalidator.services.BookService;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @RestController

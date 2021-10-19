@@ -5,23 +5,13 @@ import de.hswhameln.isbnvalidator.exceptions.BookNotFoundException;
 import de.hswhameln.isbnvalidator.exceptions.ISBNNotValidException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import de.hswhameln.isbnvalidator.beans.Book;
 import de.hswhameln.isbnvalidator.repositories.BookRepository;
 import de.hswhameln.isbnvalidator.utils.ISBNAPI;
 
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service

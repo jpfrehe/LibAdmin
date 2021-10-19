@@ -3,18 +3,10 @@ package de.hswhameln.isbnvalidator.utils;
 import de.hswhameln.isbnvalidator.dto.ValidationResponse;
 import de.hswhameln.isbnvalidator.exceptions.ISBNValidatorNotAccessibleException;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 
-
-import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
