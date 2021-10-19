@@ -1,7 +1,7 @@
 package de.hswhameln.isbnvalidator.exceptions;
 
 public class ISBNNotValidException extends RuntimeException{
-    public ISBNNotValidException(String isbn) {
-        super(String.format("The inserted ISBN is not valid. Insert Failed.", isbn));
+    public ISBNNotValidException(String isbn, String message) {
+        super(String.format("%s Inserting the ISBN %s failed.", message, isbn));
     }
 }

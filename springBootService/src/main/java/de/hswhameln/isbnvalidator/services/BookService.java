@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.hswhameln.isbnvalidator.beans.Book;
+import de.hswhameln.isbnvalidator.dto.ValidationResponse;
 import de.hswhameln.isbnvalidator.repositories.BookRepository;
-import de.hswhameln.isbnvalidator.utils.ISBNAPI;
+import de.hswhameln.isbnvalidator.utils.RestConsumer;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,9 +33,11 @@ public class BookService {
      * @return Bookobjekt
      */
     public Optional<Book> findBook(String isbn) {
-        if(!ISBNAPI.validateISBN(isbn)) {
-            throw new ISBNNotValidException(isbn);
+        ValidationResponse response = RestConsumer.validateISBN(isbn);
+        if(!response.isValid()) {
+            throw new ISBNNotValidException(response.getIsbn(), response.getMessage());
         }
+
         return repository.findByisbn(isbn);
     }
 
@@ -47,9 +50,11 @@ public class BookService {
      * @param book Book as Entitdy
      */
     public void createBook(Book book) {
-        if(!ISBNAPI.validateISBN(book.getIsbn())) {
-            throw new ISBNNotValidException(book.getIsbn());
+        ValidationResponse response = RestConsumer.validateISBN(book.getIsbn());
+        if(!response.isValid()) {
+            throw new ISBNNotValidException(response.getIsbn(), response.getMessage());
         }
+
         if(this.repository.findByisbn(book.getIsbn()).isPresent()) {
             throw new BookAlreadyExistsException(book.getIsbn());
         }
