@@ -29,12 +29,12 @@ public class BookService {
      * Sucht uns das Buch aus der DB oder erstellt ein neues Objekt Mit Hilfe einer
      * automatisierten WHERE Bedingung im Repository
      *
-     * @param isbn      ISBN als String
+     * @param isbn ISBN als String
      * @return Bookobjekt
      */
     public Optional<Book> findBook(String isbn) {
         ValidationResponse response = RestConsumer.validateISBN(isbn);
-        if(!response.isValid()) {
+        if (!response.isValid()) {
             throw new ISBNNotValidException(response.getIsbn(), response.getMessage());
         }
 
@@ -42,48 +42,47 @@ public class BookService {
     }
 
     /**
-     * Fügt ein neues Buch in der DB hinzu.
-     * Dabei wird geprüft ob diese Buch bereits in der DB existiert
-     * und ob die ISBN des Buches korrekt ist.
-     * In diesem Fall wird ein Fehler ausgegeben.
+     * Fügt ein neues Buch in der DB hinzu. Dabei wird geprüft ob diese Buch bereits
+     * in der DB existiert und ob die ISBN des Buches korrekt ist. In diesem Fall
+     * wird ein Fehler ausgegeben.
      *
-     * @param book Book as Entitdy
+     * @param book
      */
     public void createBook(Book book) {
         ValidationResponse response = RestConsumer.validateISBN(book.getIsbn());
-        if(!response.isValid()) {
+        if (!response.isValid()) {
             throw new ISBNNotValidException(response.getIsbn(), response.getMessage());
         }
 
-        if(this.repository.findByisbn(book.getIsbn()).isPresent()) {
+        if (this.repository.findByisbn(book.getIsbn()).isPresent()) {
             throw new BookAlreadyExistsException(book.getIsbn());
         }
         this.repository.save(book);
     }
 
     /**
-     * Löscht eine größere Anzahl an Büchern, welche in Form einer Liste übergeben werden.
-     * Dafür ruft die Methode den Löschvorgang für ein einzelnes Buch per Schleife auf.
+     * Löscht eine größere Anzahl an Büchern, welche in Form einer Liste übergeben
+     * werden. Dafür ruft die Methode den Löschvorgang für ein einzelnes Buch per
+     * Schleife auf.
      *
      * @param books
      */
     public void deleteBooks(List<Book> books) {
-        for(Book book: books){
+        for (Book book : books) {
             this.deleteBook(book);
         }
     }
 
     /**
-     * Löscht ein übergebenes Buch aus der DB.
-     * Dabei wird geprüft, ob das Buch in der DB exisitiert.
-     * Falls nict wird ein Fheler ausgegeben.
+     * Löscht ein übergebenes Buch aus der DB. Dabei wird geprüft, ob das Buch in
+     * der DB exisitiert. Falls nict wird ein Fheler ausgegeben.
      *
      * @param book
      */
-    public void deleteBook(Book book){
-        if(this.repository.findByisbn(book.getIsbn()).isPresent()){
+    public void deleteBook(Book book) {
+        if (this.repository.findByisbn(book.getIsbn()).isPresent()) {
             this.repository.delete(this.repository.findByisbn(book.getIsbn()).get());
-        } else{
+        } else {
             throw new BookNotFoundException(book.getIsbn());
         }
     }

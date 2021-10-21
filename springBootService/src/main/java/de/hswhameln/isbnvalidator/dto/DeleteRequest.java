@@ -3,6 +3,9 @@ package de.hswhameln.isbnvalidator.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Stellt eine Löschanfrage für eine ISBN dar.
+ */
 public class DeleteRequest {
 
     List<String> isbns;

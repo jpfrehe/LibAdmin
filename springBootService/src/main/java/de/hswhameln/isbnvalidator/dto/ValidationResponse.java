@@ -1,8 +1,10 @@
 package de.hswhameln.isbnvalidator.dto;
 
+/**
+ * Stellt die Antwort für eine Validierungsanfrage dar.
+ */
 public class ValidationResponse {
     private String isbn;
-    
 
     private boolean valid;
     private String message;
@@ -10,7 +12,7 @@ public class ValidationResponse {
     public ValidationResponse() {
 
     }
-    
+
     public ValidationResponse(String isbn, boolean valid, String message) {
         this.isbn = isbn;
         this.valid = valid;

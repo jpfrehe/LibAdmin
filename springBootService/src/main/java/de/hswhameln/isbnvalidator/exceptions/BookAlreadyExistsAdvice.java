@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * Advice für den Fall, dass ein Buch bereits existiert
+ */
 @ControllerAdvice
 public class BookAlreadyExistsAdvice {
 

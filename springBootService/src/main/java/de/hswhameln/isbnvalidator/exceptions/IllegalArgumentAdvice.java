@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * Extra Advice für den Fall, dass ein ungültiges Zeichen eingegeben wurde
+ */
 @ControllerAdvice
 public class IllegalArgumentAdvice {
 

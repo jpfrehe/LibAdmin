@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * Advice für den Fall, dass der ISBNValidator nicht erreichbar ist
+ */
 @ControllerAdvice
 public class ISBNValidatorNotAccessibleAdvice {
 

@@ -1,5 +1,8 @@
 package de.hswhameln.isbnvalidator.dto;
 
+/**
+ * Stellt eine Suchanfrage für eine ISBN dar.
+ */
 public class SearchRequest {
     private String isbn;
 

@@ -35,39 +35,41 @@ class IsbnvalidatorApplicationTests {
 	@Test
 	@DirtiesContext
 	void testDataCreated() {
-		assertEquals(16,StreamSupport.stream(this.repository.findAll().spliterator(), false).count());
+		assertEquals(16, StreamSupport.stream(this.repository.findAll().spliterator(), false).count());
 	}
 
 	@Test
 	@DirtiesContext
 	void deleteBookTest() {
-		service.deleteBooks(List.of(new Book("Nina & Tom","Tom Kummer","Blumenbar","978-3-351-05035-1")));
+		service.deleteBooks(List.of(new Book("Nina & Tom", "Tom Kummer", "Blumenbar", "978-3-351-05035-1")));
 	}
 
 	@Test
 	@DirtiesContext
 	void deleteBookAndSearchTest() {
-		service.deleteBook(new Book("Es existiert","Johannes Huber","Goldmann","978-3-442-22232-2"));
+		service.deleteBook(new Book("Es existiert", "Johannes Huber", "Goldmann", "978-3-442-22232-2"));
 		assertEquals(Optional.empty(), service.findBook("978-3-442-22232-2"));
 	}
 
 	@Test
 	@DirtiesContext
 	void createBookTest() {
-		service.createBook(new Book("Star Wars: Das Licht der Jedi", "Charles Soule","Blanvalent","978-0-593-15771-8"));
+		service.createBook(
+				new Book("Star Wars: Das Licht der Jedi", "Charles Soule", "Blanvalent", "978-0-593-15771-8"));
 		System.out.println(service.findBook("978-0-593-15771-8").get().getTitle());
 	}
 
 	@Test
 	@DirtiesContext
-	void findBookTest() { assertTrue(service.findBook("978-3-442-22232-2").isPresent());
+	void findBookTest() {
+		assertTrue(service.findBook("978-3-442-22232-2").isPresent());
 	}
 
 	@Test
 	@DirtiesContext
 	void createFalseBookTest() {
-		// Auf Jano warten
-		assertThrows(ISBNNotValidException.class, () -> service.createBook(new Book("Star Wars: Das Licht der Jedi", "Charles Soule","Blanvalent","978-0-593-15771-9")));
+		assertThrows(ISBNNotValidException.class, () -> service.createBook(
+				new Book("Star Wars: Das Licht der Jedi", "Charles Soule", "Blanvalent", "978-0-593-15771-9")));
 	}
 
 	@Test
@@ -97,7 +99,8 @@ class IsbnvalidatorApplicationTests {
 	@DirtiesContext
 	void deleteNonExistingBook() {
 		assertThrows(BookNotFoundException.class, () -> {
-			service.deleteBook(new Book("Bürgerliches Gesetzbuch", "BGH", "dtv Verlagsgesellschaft", "978-3-423-05001-2"));
+			service.deleteBook(
+					new Book("Bürgerliches Gesetzbuch", "BGH", "dtv Verlagsgesellschaft", "978-3-423-05001-2"));
 		});
 	}
 

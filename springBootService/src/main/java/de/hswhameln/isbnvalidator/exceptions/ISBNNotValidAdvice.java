@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * Advice für den Fall, dass eine ISBN nicht valide ist
+ */
 @ControllerAdvice
 public class ISBNNotValidAdvice {
 

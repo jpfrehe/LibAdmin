@@ -4,8 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+/**
+ * Stellt ein Book-Objekt dar, das über einen Rest-Call ertstellt und in einer
+ * Datenbank gespeichert werden kann
+ */
 @Entity
-@Table(name="t_book")
+@Table(name = "t_book")
 public class Book {
 
     @Id
@@ -36,7 +40,8 @@ public class Book {
 
     }
 
-    // Getter und Setter zum Initialisiern und Auslesen von den Datenfeldern eines Buches.
+    // Getter und Setter zum Initialisiern und Auslesen von den Datenfeldern eines
+    // Buches.
     public int getId() {
         return id;
     }
@@ -77,5 +82,4 @@ public class Book {
         this.isbn = isbn;
     }
 
-    
 }

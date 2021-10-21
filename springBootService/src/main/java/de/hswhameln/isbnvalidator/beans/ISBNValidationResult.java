@@ -2,6 +2,9 @@ package de.hswhameln.isbnvalidator.beans;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * Stellt das Ergebnis einer ISBN-Validierung in Form eines Booleans dar
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ISBNValidationResult {
     private boolean isValid;
@@ -19,8 +22,6 @@ public class ISBNValidationResult {
 
     @Override
     public String toString() {
-        return "ValidationResult{" +
-                "isValid='" + isValid +
-                '}';
+        return "ValidationResult{" + "isValid='" + isValid + '}';
     }
 }

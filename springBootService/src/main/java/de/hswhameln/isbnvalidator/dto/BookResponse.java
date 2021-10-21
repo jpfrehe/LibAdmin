@@ -2,6 +2,9 @@ package de.hswhameln.isbnvalidator.dto;
 
 import de.hswhameln.isbnvalidator.beans.Book;
 
+/**
+ * Stellt die Antwort für eine Buch-Anfrage dar.
+ */
 public class BookResponse {
     private String title;
     private String author;
