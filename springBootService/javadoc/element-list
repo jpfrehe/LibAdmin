@@ -1,0 +1,8 @@
+de.hswhameln.isbnvalidator
+de.hswhameln.isbnvalidator.beans
+de.hswhameln.isbnvalidator.controller
+de.hswhameln.isbnvalidator.dto
+de.hswhameln.isbnvalidator.exceptions
+de.hswhameln.isbnvalidator.repositories
+de.hswhameln.isbnvalidator.services
+de.hswhameln.isbnvalidator.utils

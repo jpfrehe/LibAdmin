@@ -13,10 +13,7 @@ public class DeleteRequest {
     public DeleteRequest() {
         this.isbns = new ArrayList<>();
     }
-
-    /**
-     * @return List<String>
-     */
+    
     public List<String> getIsbns() {
         return isbns;
     }
