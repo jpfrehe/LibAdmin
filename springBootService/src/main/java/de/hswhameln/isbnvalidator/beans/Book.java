@@ -40,44 +40,74 @@ public class Book {
 
     }
 
+    /**
+     * @return int
+     */
     // Getter und Setter zum Initialisiern und Auslesen von den Datenfeldern eines
     // Buches.
     public int getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * @return String
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * @param title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * @return String
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * @param author
+     */
     public void setAuthor(String author) {
         this.author = author;
     }
 
+    /**
+     * @return String
+     */
     public String getPublisher() {
         return publisher;
     }
 
+    /**
+     * @param publisher
+     */
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
 
+    /**
+     * @return String
+     */
     public String getIsbn() {
         return isbn;
     }
 
+    /**
+     * @param isbn
+     */
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }

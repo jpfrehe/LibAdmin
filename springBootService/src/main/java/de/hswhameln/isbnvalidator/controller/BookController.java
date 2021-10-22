@@ -31,7 +31,7 @@ public class BookController {
      * 
      * @param request
      */
-    @PostMapping(path = "/addbook")
+    @PostMapping(path = "/addBook")
     public void createBook(@RequestBody AddRequest request) {
         service.createBook(request.getBook());
     }

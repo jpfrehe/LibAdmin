@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class IllegalArgumentAdvice {
 
+    /**
+     * @param ex
+     * @return String
+     */
     @ResponseBody
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

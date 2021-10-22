@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class BookAlreadyExistsAdvice {
 
+    /**
+     * @param ex
+     * @return String
+     */
     @ResponseBody
     @ExceptionHandler(BookAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

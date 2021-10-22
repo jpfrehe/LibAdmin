@@ -6,10 +6,16 @@ package de.hswhameln.isbnvalidator.dto;
 public class SearchRequest {
     private String isbn;
 
+    /**
+     * @return String
+     */
     public String getIsbn() {
         return isbn;
     }
 
+    /**
+     * @param isbn
+     */
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }

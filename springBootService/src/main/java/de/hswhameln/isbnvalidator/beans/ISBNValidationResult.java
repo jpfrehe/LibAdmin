@@ -12,14 +12,26 @@ public class ISBNValidationResult {
     public ISBNValidationResult() {
     }
 
+    
+    /** 
+     * @param isValid
+     */
     public void setValid(boolean isValid) {
         this.isValid = isValid;
     }
 
+    
+    /** 
+     * @return boolean
+     */
     public boolean isValid() {
         return this.isValid;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         return "ValidationResult{" + "isValid='" + isValid + '}';

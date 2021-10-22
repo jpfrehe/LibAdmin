@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 
 services:
   postgres:
@@ -16,7 +16,7 @@ services:
     container_name: libadmin_service
     build: ./springBootService/
     ports: 
-    - "80:80"
+    - "8080:8080"
     links: 
     - "postgres:postgres"
     depends_on: 

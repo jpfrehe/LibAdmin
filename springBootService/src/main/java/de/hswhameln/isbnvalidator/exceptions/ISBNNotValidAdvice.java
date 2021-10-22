@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class ISBNNotValidAdvice {
 
+    /**
+     * @param ex
+     * @return String
+     */
     @ResponseBody
     @ExceptionHandler(ISBNNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

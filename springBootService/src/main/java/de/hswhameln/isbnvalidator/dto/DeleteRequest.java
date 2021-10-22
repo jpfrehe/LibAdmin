@@ -14,10 +14,16 @@ public class DeleteRequest {
         this.isbns = new ArrayList<>();
     }
 
+    /**
+     * @return List<String>
+     */
     public List<String> getIsbns() {
         return isbns;
     }
 
+    /**
+     * @param isbns
+     */
     public void setIsbns(List<String> isbns) {
         this.isbns = isbns;
     }

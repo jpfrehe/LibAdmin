@@ -19,26 +19,44 @@ public class ValidationResponse {
         this.message = message;
     }
 
+    /**
+     * @return String
+     */
     public String getIsbn() {
         return isbn;
     }
 
+    /**
+     * @param isbn
+     */
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
+    /**
+     * @return boolean
+     */
     public boolean isValid() {
         return valid;
     }
 
+    /**
+     * @param valid
+     */
     public void setValid(boolean valid) {
         this.valid = valid;
     }
 
+    /**
+     * @return String
+     */
     public String getMessage() {
         return message;
     }
 
+    /**
+     * @param message
+     */
     public void setMessage(String message) {
         this.message = message;
     }

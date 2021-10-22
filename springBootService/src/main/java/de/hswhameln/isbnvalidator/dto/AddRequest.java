@@ -8,10 +8,16 @@ import de.hswhameln.isbnvalidator.beans.Book;
 public class AddRequest {
     private Book book;
 
+    /**
+     * @return Book
+     */
     public Book getBook() {
         return book;
     }
 
+    /**
+     * @param book
+     */
     public void setBook(Book book) {
         this.book = book;
     }
